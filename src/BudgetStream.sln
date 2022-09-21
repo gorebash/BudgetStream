@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32804.467
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetStream.Fn", "BudgetStream.Fn\BudgetStream.Fn.csproj", "{65D9E143-8323-4D1B-A0DE-9DB700EF8B54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetStream.Fn.PlaidFakes", "BudgetStream.Fn.PlaidFakes\BudgetStream.Fn.PlaidFakes.csproj", "{377DB545-82B2-4B92-8FAF-B86CD902A14E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65D9E143-8323-4D1B-A0DE-9DB700EF8B54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65D9E143-8323-4D1B-A0DE-9DB700EF8B54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65D9E143-8323-4D1B-A0DE-9DB700EF8B54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65D9E143-8323-4D1B-A0DE-9DB700EF8B54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{377DB545-82B2-4B92-8FAF-B86CD902A14E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{377DB545-82B2-4B92-8FAF-B86CD902A14E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{377DB545-82B2-4B92-8FAF-B86CD902A14E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{377DB545-82B2-4B92-8FAF-B86CD902A14E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {757985BC-E1C0-441B-9C45-A22D59AFFCAC}
+	EndGlobalSection
+EndGlobal
