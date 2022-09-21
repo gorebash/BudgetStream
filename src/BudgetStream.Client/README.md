@@ -6,6 +6,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
+## PWA
+To enable the PWA features of the app when running locally, serve from a seperate http server. First `ng build`, then run `http-server -p 8080 -c-1 dist/budget-stream.client` (uses http-server package from npm).
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
