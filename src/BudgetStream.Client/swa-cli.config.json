@@ -1,0 +1,13 @@
+{
+  "$schema": "https://aka.ms/azure/static-web-apps-cli/schema",
+  "configurations": {
+    "budget-stream.client": {
+      "appLocation": ".",
+      "apiLocation": "../BudgetStream.Services/",
+      "outputLocation": "dist\\budget-stream",
+      "appBuildCommand": "npm run build",
+      "run": "npm start",
+      "appDevserverUrl": "http://localhost:4200"
+    }
+  }
+}
