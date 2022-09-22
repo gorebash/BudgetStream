@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { SwPush } from '@angular/service-worker';
 import { environment } from 'src/environments/environment';
+import { SubscriptionService } from './subscription.service';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,9 @@ import { environment } from 'src/environments/environment';
 })
 export class AppComponent {
   title = 'Budget Stream';
+  @ViewChild('notificationBody') notificationBody!: ElementRef;
 
-  constructor(private sw:SwPush) { }
+  constructor(private sub:SubscriptionService, private sw:SwPush) { }
 
   requestNotificationPermissions() {
     Notification.requestPermission().then(permission => {
@@ -22,21 +24,32 @@ export class AppComponent {
 
   async subscribe () {
     try {
-      const sub = await this.sw.requestSubscription({
+      const subscription = await this.sw.requestSubscription({
         serverPublicKey: environment.PUBLIC_VAPID_KEY,
       });
 
-      // TODO: Send to server.
-      
+      this.sub.addPushSubscriber(subscription)
+        .subscribe(() => {
+          console.log("push subscription created.");
+        });
+    
+
     } catch (err) {
       console.error('Could not subscribe due to:', err);
     }
   }
 
+  sendNotifications () {
+    var message = this.notificationBody.nativeElement.value;
+    this.sub.sendNotifications(message)
+      .subscribe(() => {
+        console.log("notifications sent.");
+      });
+  }
+
   async subscribeNotificationHandlers (){
     this.sw.notificationClicks.subscribe(
       ({action, notification}) => {
-          // TODO: Do something in response to notification click.
           console.log("found notification!");
           console.log(action);
           console.log(notification);

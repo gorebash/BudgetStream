@@ -2,11 +2,26 @@
 
 
 <h1>Budget Stream</h1>
-1.4
+1.9
 <main>
     <button id="nofityPermissions" (click)="requestNotificationPermissions()">Enable Notifications</button><br/>
-    <button id="nofitySubscribe" (click)="subscribe()">Register new push creds using Ng Service Worker</button>
-    <button id="nofitySubscribe" (click)="subscribeNotificationHandlers()">Subscribe for Push Notifications</button>
+    <button id="nofitySubscribe" (click)="subscribe()">Subscribe for Push Notifications</button><br/>
+    <button id="nofitySubscribe" (click)="subscribeNotificationHandlers()">Register notification handlers</button><br/>
+
+    <hr/>
+    <textarea rows="20" cols="60" #notificationBody>
+        {
+            "notification": {
+                "title": "New Notification!",
+                "data": {
+                    "onActionClick": {
+                        "default": {"operation": "focusLastFocusedOrOpen"}
+                    }
+                }
+            }
+        }
+    </textarea><br/>
+    <button (click)="sendNotifications()">Notify Subscribers</button>
 </main>
 
 

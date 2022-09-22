@@ -4,6 +4,11 @@
 
 export const environment = {
   production: false,
+
+  // Short fix to enabling the PWA to run locally. In production, the relative /api path will work because of the SWA configuration.
+  // When running locally however, currently have not found a way to run both the SWA and the PWA under the same local dev server.
+  apiBasePath: "http://localhost:7131/api",
+
   PUBLIC_VAPID_KEY: "BAbMJGRwLHHc76NTvulB-1di3wjxqqLEOgYyz1_DwsfvQQXC57Tp-f_R_qmY-QaF0n7c4tBnX2eyrKwy2ieUBsg"
 };
 
