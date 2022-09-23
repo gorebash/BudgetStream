@@ -45,11 +45,23 @@ namespace BudgetStream.Services
             // todo: only needed for e2e testing.
             var message = await new StreamReader(req.Body).ReadToEndAsync();
 
+            var privateKey = Environment.GetEnvironmentVariable("VAPID_PRIVATE_KEY");
+            if (string.IsNullOrEmpty(privateKey))
+                throw new ArgumentNullException("VAPID_PRIVATE_KEY", "VAPID private key not set.");
+
+            var publicKey = Environment.GetEnvironmentVariable("VAPID_PUBLIC_KEY");
+            if (string.IsNullOrEmpty(publicKey))
+                throw new ArgumentNullException("VAPID_PRIVATE_KEY", "VAPID public key not set.");
+
+            var subject = Environment.GetEnvironmentVariable("VAPID_SUBJECT");
+            if (string.IsNullOrEmpty(subject))
+                throw new ArgumentNullException("VAPID_SUBJECT", "VAPID subject not set.");
+
             var keys = new VapidDetails
             {
-                PrivateKey = Environment.GetEnvironmentVariable("VAPID_PRIVATE_KEY"),
-                PublicKey = Environment.GetEnvironmentVariable("VAPID_PUBLIC_KEY"),
-                Subject = Environment.GetEnvironmentVariable("VAPID_SUBJECT")
+                PrivateKey = privateKey,
+                PublicKey = publicKey,
+                Subject = subject
             };
 
             await pushClient.SendNotificationAsync(_subs.FirstOrDefault(), message, keys);
