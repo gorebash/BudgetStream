@@ -3,7 +3,7 @@
   "configurations": {
     "budget-stream.client": {
       "appLocation": ".",
-      "apiLocation": "../BudgetStream.Services/",
+      "apiLocation": "http://localhost:7131",
       "outputLocation": "dist\\budget-stream",
       "appBuildCommand": "npm run build",
       "run": "npm start",

@@ -1,0 +1,15 @@
+
+post https://budgetstream.azurewebsites.net/api/Subscribe?
+
+code={{code}}
+Content-Type: application/json
+
+{
+    "endpoint":"https://fcm.googleapis.com/fcm/send/dJjKV-pgb4o:APA91bG_PukCJrWl1IvR5gnRKUSn5-AmJx3Vr-vhM9ZESMRKrLWDg5bM-Bct3otdjTyC-sIY8Ea12_ugCxZEcnFYpaFIFnsHtYSIpHX98bem0u9DP-Bq_6TqP6YyUrg1Qr_onXDTLXWF",
+    "expirationTime":null,
+    "keys": {
+        "p256dh":"BNWhm-zHptcefkKJwkab8lsN7u6fwCjmTR2Dt22a_SlDwlU0T3p0at7FRonnWwfb5La-7IYwmeFUi46zZW_KG8s",
+        "auth":"EtwzJd5yPwtYOpAIszsO9g"
+    }
+}
+

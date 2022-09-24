@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { SwPush } from '@angular/service-worker';
 import { environment } from 'src/environments/environment';
-import { SubscriptionService } from './subscription.service';
+import { SubscriptionService } from './services/subscription.service';
 
 @Component({
   selector: 'app-root',

@@ -12,12 +12,16 @@ Start by creating local VAPID keys. They can be craeted at [VapidKeys](https://v
 
 First start the functions running locally. Currently setup to run on port 7131 by default.
 
-## Development server
+## SWA Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `swa start` to start both the app dev server and the SWA proxy server, and is configured to direct /api traffic to port 7131. (This is all configured in the swa-cli.config.json.)
+
+Navigate to `http://localhost:4280/`.
+
+Note: Live reloading has been disabled in the package.json for development. There is an issue where live-reload interacting with both the PWA and SWA proxies that will cause infinite reloading of the page. 
 
 ## PWA
-To enable the PWA features of the app when running locally, serve from a seperate http server. First `ng build`, then run `http-server -p 8080 -c-1 dist/budget-stream.client` (uses http-server package from npm). CORS are enabled for this domain with the functions.
+To enable the PWA features of the app when running locally, serve from a seperate http server. First `ng build`, then run `http-server -p 8080 -c-1 dist/budget-stream` (uses http-server package from npm). CORS are enabled for this domain with the functions.
 
 ## Code scaffolding
 

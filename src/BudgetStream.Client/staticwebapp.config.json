@@ -1,5 +1,17 @@
 {
+    
     "platform": {
         "apiRuntime": "dotnet:6.0"
-    }
+    },
+
+    "routes":[
+        {
+            "route": "/api/*",
+            "allowedRoles": ["authenticated"]
+        },
+        {
+            "route": "/logout",
+            "redirect": "/.auth/logout"
+        }
+    ]
 }

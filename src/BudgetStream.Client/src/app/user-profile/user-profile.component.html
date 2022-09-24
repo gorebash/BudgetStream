@@ -1,0 +1,17 @@
+<!-- 
+    TODO: Figure out a better way to ensure the ng service worker doesn't try to handle these link requests.
+    The bypass query parameter keeps the service worker from intercepting them.
+ -->
+<section> 
+    <div *ngIf="user$ | async as user">
+        Welcome [user]. 
+        <a href="/.auth/logout?ngsw-bypass">Log out</a>
+        <div>
+            <pre>{{ user | json }}</pre>
+        </div>
+    </div> 
+    <div>
+        <a href="/.auth/login/aad?ngsw-bypass">Login with AAD</a> | 
+        <a href="/.auth/login/github?ngsw-bypass">Login with Github</a>
+    </div>
+</section>
