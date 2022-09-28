@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using WebPush;
 using System.Linq;
 
-namespace BudgetStream.Services
+namespace BudgetStream.Services.Functions
 {
     public static class Subscribe
     {
@@ -69,8 +69,8 @@ namespace BudgetStream.Services
             return new OkResult();
         }
 
-        
-        private static PushSubscription MapFrom (dynamic postBody) =>
+
+        private static PushSubscription MapFrom(dynamic postBody) =>
             new PushSubscription
             {
                 Endpoint = postBody.endpoint,

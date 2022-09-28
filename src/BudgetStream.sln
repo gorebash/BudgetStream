@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetStream.Services", "BudgetStream.Services\BudgetStream.Services.csproj", "{F78A1CDA-814F-49E5-BEE3-1995CB01D2DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetStream.Services", "BudgetStream.Services\BudgetStream.Services.csproj", "{F78A1CDA-814F-49E5-BEE3-1995CB01D2DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetStream.Services.FakePlaid", "BudgetStream.Services.FakePlaid\BudgetStream.Services.FakePlaid.csproj", "{552282E0-F44D-431F-8757-C111F9D16052}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F78A1CDA-814F-49E5-BEE3-1995CB01D2DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F78A1CDA-814F-49E5-BEE3-1995CB01D2DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F78A1CDA-814F-49E5-BEE3-1995CB01D2DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{552282E0-F44D-431F-8757-C111F9D16052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{552282E0-F44D-431F-8757-C111F9D16052}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{552282E0-F44D-431F-8757-C111F9D16052}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{552282E0-F44D-431F-8757-C111F9D16052}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

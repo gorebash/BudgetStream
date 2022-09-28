@@ -1,0 +1,30 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get",
+        "post"
+      ]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "cosmosDB",
+      "name": "user",
+      "databaseName": "Mira",
+      "collectionName": "Users",
+      "connectionStringSetting": "MiraUserStorage.ConnectionString",
+      "direction": "in",
+      "Id": "{id}",
+      "PartitionKey": "{userId}"
+    }
+  ],
+  "scriptFile": "../dist/FinanceInfo/index.js"
+}

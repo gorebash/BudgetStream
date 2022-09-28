@@ -1,0 +1,39 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get",
+        "post"
+      ]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "name": "userDocument",
+      "type": "cosmosDB",
+      "databaseName": "Mira",
+      "collectionName": "Users",
+      "createIfNotExists": true,
+      "connectionStringSetting": "MiraUserStorage.ConnectionString",
+      "direction": "out"
+    },
+    {
+      "type": "cosmosDB",
+      "name": "user",
+      "databaseName": "Mira",
+      "collectionName": "Users",
+      "connectionStringSetting": "MiraUserStorage.ConnectionString",
+      "direction": "in",
+      "Id": "{id}",
+      "PartitionKey": "{userId}"
+    }
+  ],
+  "scriptFile": "../dist/ExchangeToken/index.js"
+}
