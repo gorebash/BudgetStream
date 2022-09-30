@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { PlaidLinkComponent } from './plaid-link/plaid-link.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    PlaidLinkComponent
   ],
   imports: [
     BrowserModule,

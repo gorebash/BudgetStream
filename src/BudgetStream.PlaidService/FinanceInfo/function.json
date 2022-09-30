@@ -18,9 +18,9 @@
     {
       "type": "cosmosDB",
       "name": "user",
-      "databaseName": "Mira",
+      "databaseName": "BudgetStream",
       "collectionName": "Users",
-      "connectionStringSetting": "MiraUserStorage.ConnectionString",
+      "connectionStringSetting": "UserStore.ConnectionString",
       "direction": "in",
       "Id": "{id}",
       "PartitionKey": "{userId}"

@@ -9,6 +9,10 @@ export const environment = {
   // When running locally however, currently have not found a way to run both the SWA and the PWA under the same local dev server.
   apiBasePath: "http://localhost:7131/api",
 
+  apiPaths: {
+    plaid: 'http://localhost:4280/api',
+  },
+
   PUBLIC_VAPID_KEY: "BAbMJGRwLHHc76NTvulB-1di3wjxqqLEOgYyz1_DwsfvQQXC57Tp-f_R_qmY-QaF0n7c4tBnX2eyrKwy2ieUBsg"
 };
 

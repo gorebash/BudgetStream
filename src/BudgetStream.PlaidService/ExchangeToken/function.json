@@ -6,7 +6,6 @@
       "direction": "in",
       "name": "req",
       "methods": [
-        "get",
         "post"
       ]
     },
@@ -18,18 +17,18 @@
     {
       "name": "userDocument",
       "type": "cosmosDB",
-      "databaseName": "Mira",
+      "databaseName": "BudgetStream",
       "collectionName": "Users",
       "createIfNotExists": true,
-      "connectionStringSetting": "MiraUserStorage.ConnectionString",
+      "connectionStringSetting": "UserStore.ConnectionString",
       "direction": "out"
     },
     {
       "type": "cosmosDB",
       "name": "user",
-      "databaseName": "Mira",
+      "databaseName": "BudgetStream",
       "collectionName": "Users",
-      "connectionStringSetting": "MiraUserStorage.ConnectionString",
+      "connectionStringSetting": "UserStore.ConnectionString",
       "direction": "in",
       "Id": "{id}",
       "PartitionKey": "{userId}"

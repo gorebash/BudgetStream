@@ -1,10 +1,11 @@
 import { AzureFunction, Context } from "@azure/functions";
+import { LinkTokenCreateResponse } from "plaid";
 import { AppSettings } from "../shared/AppSettings";
 import { AuthMiddleware } from '../shared/AuthMiddleware';
 import { AuthReqest } from '../shared/AuthMiddleware.types';
 import PlaidService from "../shared/PlaidService";
 
-const httpTrigger: AzureFunction = async function (context: Context, req: AuthReqest): Promise<void> {
+const httpTrigger: AzureFunction = async function (context: Context, req: AuthReqest): Promise<any> {
 
     const plaidService = new PlaidService();
     await plaidService.loadSettingsFrom(new AppSettings());
@@ -17,7 +18,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: AuthRe
     const decoded = encoded.toString('ascii');
 
     const userInfo = JSON.parse(decoded);
-    context.log(userInfo);
+    //context.log(userInfo);
     const userId:string = userInfo.userId;
     
     try {
@@ -36,10 +37,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: AuthRe
         };
     }
     
-    context.done();    
+    //context.done();    
 }
 
 export default httpTrigger;
-
-//const authed = new AuthMiddleware({ next: httpTrigger });
-//export default authed.func;

@@ -97,12 +97,13 @@ class PlaidService {
 
     private async createClient () {
         const client = new PlaidApi(new Configuration({
-            basePath: PlaidEnvironments[this.settings.plaidEnv],
+            //basePath: PlaidEnvironments[this.settings.plaidEnv],
+            basePath: PlaidEnvironments.sandbox, // todo: fix.
             baseOptions: {
                 headers: {
                     'PLAID-CLIENT-ID': this.settings.plaidClientId,
                     'PLAID-SECRET': this.settings.plaidSecret,
-                    "Plaid-Version": process.env.PlaidVersion
+                    "Plaid-Version": this.settings.plaidVersion
                 },
             },
         }));

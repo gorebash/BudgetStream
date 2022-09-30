@@ -11,7 +11,7 @@ import PlaidService from "../shared/PlaidService";
  * The itemId represents a financial institution relationship to the user.
  * The retrived access key and ID to the cosmos user store.
  * 
- * For this to work you will need to add the cosmos connection string to your local.settings: MiraUserStorage.ConnectionString.
+ * For this to work you will need to add the cosmos connection string to your local.settings: UserStore.ConnectionString.
  * 
  * @param context 
  * @param req The request should contain a plaid provided publicToken and the logged in userId.
@@ -35,16 +35,18 @@ const exchangeToken: AzureFunction = async function (context: Context, req: Auth
         
         if (!user) {
             user = new User();
-            user.pk = { userId: req.body.userId };
-            user.id = req.body.userId; //todo: change email address or a unique document value
+
+            // todo: rename partitionKey to userName. It is mapped from userEmail OAuth property on the client.
+            user.pk = { userId: req.body.userId }; 
+            
+            // todo: this id is the actual cosmos documentId, mapped from the OAuth userId property. Update param names to documentId, but keep the cosmos property as id since it's the doc id.
+            user.id = req.body.id; 
         }
         user.fiKeys.push(key);
         
         
-        // save the user document to the cosmos binding.
-        // todo: add this to a que instead
+        // create or update the user document to the cosmos binding.
         context.bindings.userDocument = JSON.stringify(user);
-        context.done();
 
 
     } catch (error) {

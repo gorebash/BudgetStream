@@ -21,7 +21,7 @@ const financeInfo: AzureFunction = async function (context: Context, req: HttpRe
     if (!user) {
         // No matching user document found in Cosmos binding.
         context.res = {
-            status: 404, // todo: may need to change to a better status code
+            status: 404,
             body: {}
         };
     }
@@ -42,8 +42,6 @@ const financeInfo: AzureFunction = async function (context: Context, req: HttpRe
             };
         }
     }
-    
-    context.done();
 };
 
 export default financeInfo;

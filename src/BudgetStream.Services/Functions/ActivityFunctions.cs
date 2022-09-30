@@ -31,18 +31,18 @@ namespace BudgetStream.Services.Functions
         }
 
 
-        [FunctionName(nameof(SaveNewTransactions))]
-        public static void SaveNewTransactions([ActivityTrigger] List<Transaction> transactions, ILogger log,
-            [CosmosDB(
-                databaseName: "ToDoItems",
-                collectionName: "Items",
-                ConnectionStringSetting = "CosmosDBConnection")]out dynamic document)
-        {
-            // todo: filter to only new transactions, or...
-            // todo: use plaid webhook to call instead w/o need to filter
-            // todo: maybe just add the output binding to the retrieval activity and combine?
+        //[FunctionName(nameof(SaveNewTransactions))]
+        //public static void SaveNewTransactions([ActivityTrigger] List<Transaction> transactions, ILogger log,
+        //    [CosmosDB(
+        //        databaseName: "ToDoItems",
+        //        collectionName: "Items",
+        //        ConnectionStringSetting = "CosmosDBConnection")]out dynamic document)
+        //{
+        //    // todo: filter to only new transactions, or...
+        //    // todo: use plaid webhook to call instead w/o need to filter
+        //    // todo: maybe just add the output binding to the retrieval activity and combine?
 
-            document = transactions;
-        }
+        //    document = transactions;
+        //}
     }
 }
