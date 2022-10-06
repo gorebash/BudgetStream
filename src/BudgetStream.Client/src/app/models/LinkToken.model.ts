@@ -8,3 +8,8 @@ export interface FIModel {
   detailInfo: any;
   accounts: Array<any>;
 }
+
+export interface SyncResult {
+  userFIs: any, // this is a FinancialInst[]
+  initialSync: any
+}

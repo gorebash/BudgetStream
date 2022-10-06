@@ -1,4 +1,4 @@
-import { AccountBase } from "plaid";
+import { AccountBase, Transaction, TransactionsSyncResponse } from "plaid";
 
 
 /**
@@ -26,6 +26,7 @@ export class User {
 
 /**
  * Contains financial institution link information to retrieve finance data from Plaid.
+ * This structure is save with the user document in the db.
  */
 export class FIKey {
     /**
@@ -36,17 +37,18 @@ export class FIKey {
      constructor(
         public accessToken:string, 
         public itemId:string) { }
+
+    cursor?:string = null;
 }
 
 
 /**
- * Represents a Mira financial institution
+ * Represents a financial institution.
+ * This structure is not intended to be saved back to the db.
  */
  export interface FinancialInst {
+    itemId:string;
     detailInfo: any;
     accounts:Array<AccountBase>;
+    transactionSync:TransactionsSyncResponse;
 }
-
-// export interface FIDetail {
-//     name:string;
-// }

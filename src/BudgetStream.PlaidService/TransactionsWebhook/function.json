@@ -1,0 +1,36 @@
+{
+  "bindings": [
+    {
+      "authLevel": "function",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "post"
+      ]
+    },
+    {
+      "type": "cosmosDB",
+      "name": "user",
+      "databaseName": "BudgetStream",
+      "collectionName": "Users",
+      "connectionStringSetting": "UserStore.ConnectionString",
+      "direction": "in",
+      "Id": "{id}",
+      "PartitionKey": "{userId}"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "queue",
+      "direction": "out",
+      "name": "transactionsQueue",
+      "queueName": "transactions-queue",
+      "connection": "TransactionsQueue.ConnectionString"
+    }
+  ],
+  "scriptFile": "../dist/TransactionsWebhook/index.js"
+}

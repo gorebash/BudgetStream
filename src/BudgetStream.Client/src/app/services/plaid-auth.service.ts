@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/User.model';
-import { FIModel, LinkToken } from '../models/LinkToken.model';
+import { FIModel, LinkToken, SyncResult } from '../models/LinkToken.model';
 
 @Injectable({
   providedIn: 'root',
@@ -37,8 +37,8 @@ export class PlaidAuthService {
    * @param user 
    * @returns 
    */
-  getFiInfo(user: User): Observable<Array<FIModel>> {
-    return this.http.post<Array<FIModel>>(`${environment.apiPaths.plaid}/FinanceInfo`, {
+  getFiInfo(user: User): Observable<SyncResult> {
+    return this.http.post<SyncResult>(`${environment.apiPaths.plaid}/FinanceInfo`, {
       id: user?.documentId,
       userId: user?.userEmail,
     });

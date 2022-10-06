@@ -1,0 +1,10 @@
+
+
+# Test case: No transactions for the item.
+post http://localhost:7071/api/FinanceInfo
+Content-Type: application/json
+
+{
+    "id": "7ff3d77855419fed88f996d204b449ae",
+    "userId": "Thor"
+}

@@ -30,8 +30,16 @@ const financeInfo: AzureFunction = async function (context: Context, req: HttpRe
         try {
             
             const userFIs = await plaidService.retrieveUserFIs(user);
+            
+            // grab the new or updated cursor from retrieval and save it with the FI keys.
+            user.fiKeys.forEach(fi => 
+                fi.cursor = userFIs.find(x => x.itemId == fi.itemId).transactionSync.next_cursor);
+
+            // create or update the user document to the cosmos binding.
+            context.bindings.userDocument = JSON.stringify(user);
+
             context.res = {
-                body: userFIs
+                body: { userFIs }
             };
 
         } catch (error) {

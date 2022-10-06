@@ -11,11 +11,6 @@
       ]
     },
     {
-      "type": "http",
-      "direction": "out",
-      "name": "res"
-    },
-    {
       "type": "cosmosDB",
       "name": "user",
       "databaseName": "BudgetStream",
@@ -24,6 +19,20 @@
       "direction": "in",
       "Id": "{id}",
       "PartitionKey": "{userId}"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "name": "userDocument",
+      "type": "cosmosDB",
+      "databaseName": "BudgetStream",
+      "collectionName": "Users",
+      "createIfNotExists": true,
+      "connectionStringSetting": "UserStore.ConnectionString",
+      "direction": "out"
     }
   ],
   "scriptFile": "../dist/FinanceInfo/index.js"

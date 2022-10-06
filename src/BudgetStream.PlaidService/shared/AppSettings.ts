@@ -22,7 +22,8 @@ export class AppSettings {
         plaidEnv: process.env.plaidEnv,
         plaidClientId: process.env.plaidClientId,
         plaidSecret: process.env.plaidSecret,
-        plaidVersion: process.env.plaidVersion
+        plaidVersion: process.env.plaidVersion,
+        transactionsWebhookUrl: process.env.transactionsWebhookUrl
       };
     } catch (ex) {
       // log.

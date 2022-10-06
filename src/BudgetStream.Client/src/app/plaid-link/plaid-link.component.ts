@@ -40,10 +40,8 @@ export class PlaidLinkComponent implements OnInit {
         if (user) {
           this.user = user;
           this.userAuthenticated = true;
-          this.plaidAuthService.getFiInfo(this.user)
-            .subscribe(fiList => this.fiList = fiList);
+          this.fetchUserFIs();
 
-          // todo: provide user ID to link token call.
           this.plaidAuthService.getLinkToken()
             .subscribe((link: LinkToken) => {
               this.createPlaidHandler(link);
@@ -94,9 +92,13 @@ export class PlaidLinkComponent implements OnInit {
         this.fetchUserFIs();
       })
   }
-
+  
   private fetchUserFIs() {
     this.plaidAuthService.getFiInfo(this.user)
-      .subscribe(fiList => this.fiList = fiList);
+      .subscribe(result => {
+        this.fiList = result.userFIs;
+      });
   }
 }
+
+

@@ -1,5 +1,5 @@
 //import dayjs = require("dayjs");
-import { Configuration, PlaidApi, PlaidEnvironments, Products, CountryCode, AccountsGetRequest, ItemGetRequest, InstitutionsGetByIdRequest, Institution, TransactionsGetRequest, Transaction, LinkTokenCreateResponse, AccountBase } from "plaid";
+import { Configuration, PlaidApi, PlaidEnvironments, Products, CountryCode, AccountsGetRequest, ItemGetRequest, InstitutionsGetByIdRequest, Institution, TransactionsGetRequest, Transaction, LinkTokenCreateResponse, AccountBase, TransactionsSyncRequest, TransactionsSyncResponse, RemovedTransaction } from "plaid";
 import { AppSettings } from "../shared/AppSettings";
 import { FIKey, FinancialInst, User } from "./Models";
 
@@ -23,19 +23,16 @@ class PlaidService {
      * @returns 
      */
     async retrieveUserFIs(user:User):Promise<FinancialInst[]> {
-        let userFIs = new Array<FinancialInst>();
-        await Promise.all(
+        return await Promise.all(
             user.fiKeys
-                .map(async (fiKey) => { 
-                    const fi:FinancialInst = { 
+                .map(async fiKey => { 
+                    return { 
+                        itemId: fiKey.itemId,
                         detailInfo: await this.getFiInfo(fiKey.accessToken),
-                        accounts: await this.getDepositAccounts(fiKey.accessToken)
+                        accounts: await this.getDepositAccounts(fiKey.accessToken),
+                        transactionSync: await this.transactionSync(fiKey)
                     };
-    
-                    userFIs.push(fi);
                 }));
-    
-        return userFIs;
     }
 
 
@@ -48,9 +45,10 @@ class PlaidService {
         const config = {
                 user: { client_user_id: userId },
                 client_name: 'Plaid Test App',
-                products: [Products.Auth],
+                products: [Products.Auth, Products.Transactions],
                 language: 'en',
                 country_codes: [CountryCode.Us],
+                webhook: this.settings.transactionsWebhookUrl,
             };
 
         const response = await this.plaidClient.linkTokenCreate(config);
@@ -67,30 +65,47 @@ class PlaidService {
         const response = await this.plaidClient.itemPublicTokenExchange({ public_token: publicToken });
         return new FIKey(response.data.access_token, response.data.item_id);
     }
-    
 
-    /**
-     * Retrieves the listing of transactions for the provided deposit account. 
-     * @param accessToken Private token to auth to linked FI
-     * @param accountId Deposit account unique ID
-     * @returns Array of transactions for the provided account
-     */
-    async getTranHist(accessToken:string, accountId: string):Promise<Transaction[]> {
 
-        // todo: date params will need to be provided
-        // todo: add date logic to default to past 30 or 90 days
-        const request: TransactionsGetRequest = {
-            access_token: accessToken,
-            start_date: '2022-01-01',
-            end_date: '2022-02-15',
-            //options: { count: 100 }
-        };
+    async transactionSync (fi:FIKey):Promise<TransactionsSyncResponse> {
+        
+        // Provide a cursor from your database if you've previously
+        // received one for the Item. Leave null if this is your
+        // first sync call for this Item. The first request will
+        // return a cursor.
+        let cursor = fi.cursor;
 
-        const response = await this.plaidClient.transactionsGet(request);
-        let transactions = response.data.transactions;
-        const total_transactions = response.data.total_transactions;
+        // New transaction updates since "cursor"
+        let added: Array<Transaction> = [];
+        let modified: Array<Transaction> = [];
+        let removed: Array<RemovedTransaction> = [];
+        let hasMore = true;
 
-        return transactions;
+        // todo: just getting first page for now, eventually get all pages.
+        // Iterate through each page of new transaction updates for item
+        //while (hasMore) {
+            const request: TransactionsSyncRequest = {
+                access_token: fi.accessToken,
+                cursor: cursor,
+            };
+            const response = await this.plaidClient.transactionsSync(request)
+            const data = response.data;
+
+            // Add this page of results
+            added = added.concat(data.added);
+            modified = modified.concat(data.modified);
+            removed = removed.concat(data.removed);
+            hasMore = data.has_more;
+
+            // Update cursor to the next cursor
+            cursor = data.next_cursor;
+        //}
+
+        // Persist cursor and updated data
+        //database.applyUpdates(itemId, added, modified, removed, cursor);
+        //fi.cursor = cursor;
+
+        return data;
     }
 
 

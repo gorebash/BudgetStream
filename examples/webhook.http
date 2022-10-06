@@ -1,0 +1,27 @@
+
+
+# Test case: No transactions for the item.
+post http://localhost:7071/api/TransactionsWebhook
+Content-Type: application/json
+
+{
+    "id": "7ff3d77855419fed88f996d204b449ae",
+    "userId": "Thor",
+    "webhookCode": "SYNC_UPDATES_AVAILABLE",
+    "itemId": "d1gM5Q19dvIn9wqQVqm6U9aWo77bVMtZDGj7w"
+}
+
+
+###
+
+
+# Has transactions
+post http://localhost:7071/api/TransactionsWebhook
+Content-Type: application/json
+
+{
+    "id": "7ff3d77855419fed88f996d204b449ae",
+    "userId": "Thor",
+    "webhookCode": "SYNC_UPDATES_AVAILABLE",
+    "itemId": "Dbz6wd5xabcX3WLgdv9eCAMG4NrpZGSvnDlKg"
+}
