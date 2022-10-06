@@ -1,7 +1,7 @@
 {
     
     "platform": {
-        "apiRuntime": "dotnet:6.0"
+        "apiRuntime": "node:16"
     },
 
     "routes":[
