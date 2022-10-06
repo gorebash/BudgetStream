@@ -16,7 +16,7 @@ export class PlaidAuthService {
    * @returns LinkToken object containing the "link" key provided by Plaid.
    */
   getLinkToken(): Observable<LinkToken> {
-    return this.http.get<LinkToken>(`${environment.apiPaths.plaid}/CreateLinkToken`);
+    return this.http.get<LinkToken>(`/api/CreateLinkToken`);
   }
 
   /**
@@ -25,7 +25,7 @@ export class PlaidAuthService {
    * @returns
    */
   exchangeTokens(user: User | null, publicToken?: string): Observable<any> {
-    return this.http.post(`${environment.apiPaths.plaid}/ExchangeToken`, {
+    return this.http.post(`/api/ExchangeToken`, {
       publicToken: publicToken,
       id: user?.documentId,
       userId: user?.userEmail,
@@ -38,7 +38,7 @@ export class PlaidAuthService {
    * @returns 
    */
   getFiInfo(user: User): Observable<SyncResult> {
-    return this.http.post<SyncResult>(`${environment.apiPaths.plaid}/FinanceInfo`, {
+    return this.http.post<SyncResult>(`/api/FinanceInfo`, {
       id: user?.documentId,
       userId: user?.userEmail,
     });

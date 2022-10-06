@@ -14,7 +14,9 @@ First start the functions running locally. Currently setup to run on port 7131 b
 
 ## SWA Development server
 
-Run `swa start` to start both the app dev server and the SWA proxy server, and is configured to direct /api traffic to port 7131. (This is all configured in the swa-cli.config.json.)
+Run `swa start` to start both the app dev server and the SWA proxy server, and is configured to direct /api traffic to port 7131. (This is configured in the swa-cli.config.json.)
+
+Start the server by running `npm start` in the src/BudgetStream.PlaidService directory.
 
 Navigate to `http://localhost:4280/`.
 
