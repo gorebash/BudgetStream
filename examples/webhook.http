@@ -1,3 +1,16 @@
+# Fire Webhook
+post https://sandbox.plaid.com/sandbox/item/fire_webhook
+Content-Type: application/json
+
+{
+    "client_id": "{{plaid-client-id}}",
+    "secret": "{{plaid-secret}}",
+    "access_token": "{{plaid-access-token}}",
+    "webhook_code": "DEFAULT_UPDATE"
+}
+
+
+###
 
 
 # Test case: No transactions for the item.

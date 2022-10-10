@@ -1,7 +1,7 @@
-import { AzureFunction, Context, HttpRequest } from "@azure/functions"
-import { AppSettings } from "../shared/AppSettings";
-import { FIKey, User } from "../shared/Models";
-import PlaidService from "../shared/PlaidService";
+import { AzureFunction, Context, HttpRequest } from "@azure/functions";
+import { AppSettings } from "../core/AppSettings";
+import { FIKey, User } from "../core/models";
+import PlaidService from "../core/plaidService";
 
 const transactionsWebhook: AzureFunction = async function (context: Context, req: HttpRequest, user:User): Promise<void> {
     const plaidService = new PlaidService();
