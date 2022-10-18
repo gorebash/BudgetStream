@@ -37,7 +37,8 @@ export class AppSettings {
       this._settings = {
         plaidEnv: process.env.plaidEnv,
         plaidClientId: await this.getAppConfigSetting("Plaid:ClientId"),
-        plaidSecret: await this.getSecret("KV:Plaid:Secret"),
+        //plaidSecret: await this.getSecret("KV:Plaid:Secret"),
+        plaidSecret: await this.getAppConfigSetting("Plaid:Secret"),
         plaidVersion: process.env.plaidVersion,
         transactionsWebhookUrl: process.env.transactionsWebhookUrl
       };
