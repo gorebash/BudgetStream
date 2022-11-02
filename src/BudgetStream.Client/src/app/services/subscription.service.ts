@@ -11,10 +11,12 @@ export class SubscriptionService {
   constructor(private http:HttpClient) { }
 
   addPushSubscriber (subscriber:any):Observable<any> {
-    return this.http.post(`/api/subscribe`, subscriber);
+    var baseUri = environment.baseUri_notificationService;
+    return this.http.post(`${baseUri}api/AddSubscriber`, subscriber);
   }
 
   sendNotifications(message:any):Observable<any> {
-    return this.http.post(`/api/sendNotifications`, message);
+    var baseUri = environment.baseUri_notificationService;
+    return this.http.post(`${baseUri}api/sendNotifications`, message);
   }
 }
