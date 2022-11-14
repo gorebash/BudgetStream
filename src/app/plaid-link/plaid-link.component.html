@@ -1,0 +1,26 @@
+<div class="container">
+    <button (click)="open()" *ngIf="this.plaidLoaded">Add Bank</button>
+  
+    <h3>Your Accounts</h3>
+    <div *ngIf="!this.plaidLoaded && this.userAuthenticated == null">loading...</div>
+    <div *ngIf="!this.userAuthenticated">Login or create an account to proceed.</div>
+  
+    <ng-container *ngIf="fiList.length > 0">
+      <ng-container *ngFor="let fi of fiList">
+        <h3>{{ fi?.detailInfo.name }}</h3>
+        <ul>
+          <li *ngFor="let account of fi?.accounts">
+            <span>{{ account.name }}</span> &nbsp; <span>{{ account.type }}</span> &ndash;
+            <span>{{ account.balances.current | currency }}</span>
+          </li>
+        </ul>
+      </ng-container>
+  
+      <ng-container *ngIf="fiList.length > 0">
+        <h4>FI List</h4>
+        <pre>{{ fiList | json }}</pre>
+      </ng-container>
+    </ng-container>
+    
+  </div>
+  

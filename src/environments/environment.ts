@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUri_notificationService: "http://localhost:7131/",
+  baseUri_notificationService: "http://localhost:7073/",
   PUBLIC_VAPID_KEY: "BAbMJGRwLHHc76NTvulB-1di3wjxqqLEOgYyz1_DwsfvQQXC57Tp-f_R_qmY-QaF0n7c4tBnX2eyrKwy2ieUBsg"
 };
 
