@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { SwPush } from '@angular/service-worker';
 import { environment } from 'src/environments/environment';
 import { SubscriptionService } from './services/subscription.service';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,14 @@ import { SubscriptionService } from './services/subscription.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  
   title = 'Budget Stream';
   @ViewChild('notificationBody') notificationBody!: ElementRef;
 
-  constructor(private sub:SubscriptionService, private sw:SwPush) { }
+  constructor(
+    private sub:SubscriptionService, 
+    private sw:SwPush,
+    private authService:AuthService) { }
 
   requestNotificationPermissions() {
     Notification.requestPermission().then(permission => {
@@ -24,16 +29,22 @@ export class AppComponent {
 
   async subscribe () {
     try {
-      const subscription = await this.sw.requestSubscription({
+      const subscription:PushSubscription = await this.sw.requestSubscription({
         serverPublicKey: environment.PUBLIC_VAPID_KEY,
       });
 
-      this.sub.addPushSubscriber(subscription)
-        .subscribe(() => {
-          console.log("push subscription created.");
-        });
-    
+      this.authService.getUser()
+        .subscribe((user => {
+          if (user) {
+            user.subscription = subscription;
 
+            //this.sub.addPushSubscriber(subscription)
+            this.sub.addPushSubscriber(user)
+              .subscribe(() => {
+                console.log("push subscription created.");
+              });
+          }
+        }));
     } catch (err) {
       console.error('Could not subscribe due to:', err);
     }

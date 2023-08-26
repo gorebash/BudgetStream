@@ -29,7 +29,7 @@ Start the server by running `npm start` in the src/BudgetStream.PlaidService dir
 
 Navigate to `http://localhost:4280/`.
 
-If needed install the swa-cli: npm install -g @azure/static-web-apps-cli
+If needed install the swa-cli: `npm install -g @azure/static-web-apps-cli`
 
 Note: Live reloading has been disabled in the package.json for development. There is an issue where live-reload interacting with both the PWA and SWA proxies that will cause infinite reloading of the page. 
 
